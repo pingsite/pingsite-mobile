@@ -1,26 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:pingsite/home.dart';
 import 'package:pingsite/login.dart';
-import 'package:pingsite/service/dev_http.dart';
 
-void main() {
-  HttpOverrides.global = DevHttpOverrides();
-  runApp(const PingsiteApp());
-}
+import 'service/auth.service.dart';
 
-class PingsiteApp extends StatelessWidget {
-  const PingsiteApp({Key? key}) : super(key: key);
+final _auth = AuthService();
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PingSite',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: const LoginPage(),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  bool isAuthed = await _auth.checkAuth();
+  Widget _defaultHome = isAuthed ? HomePage() : const LoginPage();
+  runApp(MaterialApp(
+    title: 'PingSite',
+    theme: ThemeData(
+      primarySwatch: Colors.indigo,
+    ),
+    home: _defaultHome,
+  ));
 }

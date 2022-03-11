@@ -5,8 +5,7 @@ import 'package:pingsite/widgets/message_composer.dart';
 import 'models/chat_message.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  HomePage({Key? key}) : super(key: key);
   final socket = PhoenixSocket("ws://dev.pingsite.io:4000/socket/websocket");
 
   @override
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    connectSocket();
+    // connectSocket();
     super.initState();
   }
 
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text("PingSite"),
       ),
       body: Column(
         children: <Widget>[
