@@ -1,4 +1,4 @@
-package com.example.pingsite
+package com.podnoms.pingsite
 
 import io.flutter.embedding.android.FlutterActivity
 
