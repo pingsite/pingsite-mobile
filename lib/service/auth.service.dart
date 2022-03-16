@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
+import 'package:pingsite/service/device.service.dart';
 import '../models/user.dart';
 
 String _baseUrl = "https://dev.pingsite.io:4000/api/v1/";
@@ -14,8 +15,31 @@ class AuthService {
     return true;
   }
 
-  Future<bool> login(String username, String password) async {
+  Future<bool> registerDevice(String token) async {
+    var user = await User.fromStorage();
+    if (user == null) {
+      return false;
+    }
+    var deviceId = await DeviceService.getDeviceId();
+    var payload = {"device_id": deviceId, "registration_id": token};
+    var accessToken = user.accessToken;
+    http.Response response = await http.post(
+        Uri.parse('${_baseUrl}device/register'),
+        headers: {
+          "Authorization": accessToken,
+          "Content-Type": "application/json"
+        },
+        body: json.encode(payload));
+    developer.inspect(response);
+    switch (response.statusCode) {
+      case 200:
+        return true;
+    }
 
+    return false;
+  }
+
+  Future<bool> login(String username, String password) async {
     var payload = {
       "user": {
         'email': username,
@@ -26,7 +50,7 @@ class AuthService {
       http.Response response = await http.post(Uri.parse('${_baseUrl}session'),
           headers: {"Content-Type": "application/json"},
           body: json.encode(payload));
-      debugPrint('response: $response');
+      developer.inspect(response);
       switch (response.statusCode) {
         case 200:
           User.fromJson(json.decode(response.body));
@@ -39,8 +63,8 @@ class AuthService {
         //   break;
       }
     } on Exception catch (e) {
-      debugPrint("Server error. Please retry");
-      debugPrint(e.toString());
+      developer.log("Server error. Please retry");
+      developer.inspect(e);
     }
     return false;
   }

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "717091205676",
+    "project_id": "pingsite-fb",
+    "storage_bucket": "pingsite-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717091205676:android:4a674c33dc27c088871789",
+        "android_client_info": {
+          "package_name": "com.podnoms.pingsite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717091205676-nfo675slg73p1hdu2ok9h800ojcffsoo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.podnoms.pingsite",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "717091205676-igci9p20avh19p10kh52kmsvm89ni93a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSMDd7b3UmJU-XUfKpXBGobzlg1iKAHEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717091205676-igci9p20avh19p10kh52kmsvm89ni93a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "717091205676-mo7ibt3h7ebn3uu9u522rc2ef744ncuh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.podnoms.pingsite"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

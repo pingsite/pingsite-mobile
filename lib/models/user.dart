@@ -30,7 +30,7 @@ class User {
     User user = User(
         accessToken: json['data']['access_token'],
         refreshToken: json['data']['refresh_token'],
-        displayName: json['user']['display_name'],
+        displayName: json['user']['display_name'] ?? 'PingSite User',
         email: json['user']['email']);
     user.store();
     return user;
